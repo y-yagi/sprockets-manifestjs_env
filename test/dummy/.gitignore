@@ -31,9 +31,4 @@
 
 /public/assets
 
-/app/assets/builds/*
-!/app/assets/builds/.keep
-/app/assets/builds-test/*
-!/app/assets/builds-test/.keep
-
 /node_modules
