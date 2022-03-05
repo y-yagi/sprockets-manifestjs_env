@@ -15,7 +15,7 @@ module Sprockets
         if ::Rails.root.join("app/assets/config/#{manifestjs}").exist?
           # TODO: If `manifest.js` for an environment exists, this gem assumes that an application doesn't use
           #       the default build directory. But this should be configured by an application.
-          app.config.assets.paths.delete_if { |d| d.end_with?('app/assets/builds') }
+          app.config.assets.paths.delete_if { |d| d.to_s.end_with?('app/assets/builds') }
         end
       end
     end
