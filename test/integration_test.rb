@@ -6,8 +6,11 @@ class SprocketsManifestjsEnvTest < Minitest::Test
     Bundler.with_unbundled_env do
       Dir.chdir("test/dummy") do
         quietly do
-          system("RAILS_ENV=production rails assets:precompile", exception: true)
+          system("bundle install", exception: true)
+          system("yarn install", exception: true)
         end
+
+        system("RAILS_ENV=production rails assets:precompile", exception: true)
 
         refute_empty Dir.glob("public/assets/application*.js")
         assert_empty Dir.glob("public/assets/test_helper*.js")
@@ -21,8 +24,10 @@ class SprocketsManifestjsEnvTest < Minitest::Test
     Bundler.with_unbundled_env do
       Dir.chdir("test/dummy") do
         quietly do
-          system("RAILS_ENV=test rails assets:precompile", exception: true)
+          system("bundle install", exception: true)
+          system("yarn install", exception: true)
         end
+        system("RAILS_ENV=test rails assets:precompile", exception: true)
 
         refute_empty Dir.glob("public/assets/application*.js")
         refute_empty Dir.glob("public/assets/test_helper*.js")
